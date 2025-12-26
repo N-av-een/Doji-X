@@ -1,0 +1,18 @@
+{
+  "start_value": 10000.0,
+  "end_value": 11873.267333630805,
+  "return_pct": 18.732673336308054,
+  "drawdown": {
+    "len": 79,
+    "drawdown": 0.8296701348296506,
+    "moneydown": 99.33309007800017,
+    "max": {
+      "len": 3828,
+      "drawdown": 4.499155570000015,
+      "moneydown": 522.0
+    }
+  },
+  "sharpe": {
+    "sharperatio": 0.2949786267762105
+  }
+}
