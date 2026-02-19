@@ -13,11 +13,11 @@ MODEL_PATH = Path("models/latest_model.joblib")
 METRICS_PATH = Path("results/ml/metrics.json")
 
 def main():
-    print("🚀 Starting Model Training...")
+    print("Starting Model Training...")
 
     # 1. Load Data
     if not DATA_PATH.exists():
-        print(f"❌ Error: Data not found at {DATA_PATH}")
+        print(f"Error: Data not found at {DATA_PATH}")
         return
     
     df = pd.read_csv(DATA_PATH)
@@ -29,8 +29,7 @@ def main():
     # Drop known non-feature columns
     X = df.drop(columns=["y", "future_ret", "datetime"], errors="ignore")
     
-    # ✅ CRITICAL FIX: Force X to keep ONLY numeric columns
-    # This removes any accidental string/date columns that cause crashes
+    
     X = X.select_dtypes(include=['number'])
 
     # Clean infinite values and align Y
@@ -40,7 +39,7 @@ def main():
     print(f"Data loaded: {len(X)} rows, {len(X.columns)} numeric features.")
 
     if X.empty:
-        print("❌ Error: No numeric features found. Check dataset.")
+        print("Error: No numeric features found. Check dataset.")
         return
 
     # 3. Setup Time-Series Cross Validation
@@ -115,9 +114,9 @@ def main():
     METRICS_PATH.write_text(json.dumps(metrics_payload, indent=2))
 
     print("--------------------------------------------------")
-    print(f"✅ Model saved to: {MODEL_PATH}")
-    print(f"✅ Metrics saved to: {METRICS_PATH}")
-    print(f"📊 Average Accuracy: {avg_acc:.2%}")
+    print(f"Model saved to: {MODEL_PATH}")
+    print(f"Metrics saved to: {METRICS_PATH}")
+    print(f"Average Accuracy: {avg_acc:.2%}")
     print("--------------------------------------------------")
 
 if __name__ == "__main__":

@@ -44,5 +44,5 @@ if __name__ == "__main__":
     out_path = out_dir / f"{symbol_used.replace('=','_').replace('^','')}_5m_60d.csv"
     df.to_csv(out_path)
 
-    print(f"✅ Downloaded {len(df)} rows using ticker: {symbol_used}")
-    print(f"✅ Saved to: {out_path}")
+    print(f"Downloaded {len(df)} rows using ticker: {symbol_used}")
+    print(f"Saved to: {out_path}")

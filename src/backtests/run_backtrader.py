@@ -49,7 +49,7 @@ class EquityLogger(bt.Analyzer):
     def get_analysis(self): return self.equity_log
 
 def main():
-    print("🚀 Starting Backtest (Target: 20-50 Trades)...")
+    print("Starting Backtest (Target: 20-50 Trades)...")
 
     df = pd.read_csv(ML_PRED_PATH)
     if "datetime" not in df.columns: df = df.rename(columns={df.columns[0]: "datetime"})
@@ -61,7 +61,7 @@ def main():
     cerebro.broker.setcommission(commission=0.0002)
     cerebro.adddata(PandasDataWithHAandML(dataname=df))
 
-    # ✅ SETTINGS FOR MAX TRADES
+    # SETTINGS FOR MAX TRADES
     cerebro.addstrategy(
         HeikinAshiDojiStrategy,
         risk_pct=0.01,
@@ -73,7 +73,7 @@ def main():
         ml_long_threshold=0.50,     # Accept ANY positive signal
         ml_short_threshold=0.50,    # Accept ANY negative signal
         
-        tp_mult=1.5                 # 👈 THIS IS KEY: Quick exits
+        tp_mult=1.5                 
     )
 
     cerebro.addanalyzer(bt.analyzers.DrawDown, _name="dd")
@@ -100,13 +100,13 @@ def main():
     
     if not trades_df.empty:
         trades_df.to_csv(OUT_DIR / "trades.csv", index=False)
-        print(f"✅ Trades saved: {len(trades_df)} trades found.")
+        print(f"Trades saved: {len(trades_df)} trades found.")
     else:
-        print("⚠️ Warning: 0 closed trades. Writing empty CSV.")
+        print("Warning: 0 closed trades. Writing empty CSV.")
         pd.DataFrame(columns=["entry_dt", "exit_dt", "entry_price", "exit_price", "pnl", "pnl_comm"]).to_csv(OUT_DIR / "trades.csv", index=False)
 
     pd.DataFrame(strat.analyzers.equity_logger.get_analysis()).set_index("datetime").to_csv(OUT_DIR / "equity.csv")
-    print(f"🏁 Done. Return: {metrics['return_pct']:.2f}%")
+    print(f"Done. Return: {metrics['return_pct']:.2f}%")
 
 if __name__ == "__main__":
     main()

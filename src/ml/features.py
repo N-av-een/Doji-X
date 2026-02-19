@@ -41,7 +41,7 @@ def main():
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(OUTPUT_PATH)
 
-    print("✅ ML dataset saved:", OUTPUT_PATH)
+    print("ML dataset saved:", OUTPUT_PATH)
     print("Rows:", len(out))
     print("Features:", len(features))
     print("Feature sample:", features[:10])

@@ -21,7 +21,7 @@ class HeikinAshiDojiStrategy(bt.Strategy):
         print(f'{dt.isoformat()} {txt}')
 
     def __init__(self):
-        # ✅ FIX: Renamed to 'dataclose' to avoid overwriting the close() function
+        # FIX: Renamed to 'dataclose' to avoid overwriting the close() function
         self.dataclose = self.datas[0].close
         
         self.ema50 = bt.ind.EMA(self.datas[0].close, period=50)
