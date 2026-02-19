@@ -19,5 +19,3 @@ streamlit-autorefresh
 tqdm
 joblib
 python-dotenv
-jupyter
-notebook
