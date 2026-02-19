@@ -12,7 +12,8 @@ scikit-learn
 yfinance
 pandas-datareader
 ccxt
-streamlit
+streamlit>=1.23.0
+altair
 streamlit-option-menu
 streamlit-autorefresh
 tqdm
